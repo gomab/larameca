@@ -44,11 +44,11 @@
         </div>
 
         <div class="col-sm-8">
-            <form>
-
+            <form method="post" action="">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                    <label for="link">URL</label>
-                    <input type="text" class="form-control" name="link" id="link" placeholder="http://www.goiomab.com">
+                    <label for="url">URL</label>
+                    <input type="text" class="form-control" name="url" id="url" placeholder="http://www.goiomab.com">
                 </div>
                 <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">

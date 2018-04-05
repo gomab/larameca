@@ -17,6 +17,8 @@
 });
  */
 
-Route::get('/', function(){
-    return view('layouts.index');
-});
+Route::get('/', 'LinksController@index');
+
+Route::post('/', 'LinksController@store');
+
+Route::get('/r/{id}', 'LinksController@show');
