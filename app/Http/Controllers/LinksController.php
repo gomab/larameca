@@ -23,7 +23,8 @@ class LinksController extends Controller
 
     public function store(){
 
-        $link = Link::create(['url' => Input::get('url')]);
+        $url = Input::get('url');
+        $link = Link::firstOrCreate(['url' => $url]);
 
         return view('layouts.success', compact('link'));
     }

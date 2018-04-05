@@ -44,7 +44,7 @@
         </div>
 
         <div class="col-sm-8">
-            <form method="post" action="">
+            <form method="post" action="{{ Route('link.store') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="url">URL</label>
