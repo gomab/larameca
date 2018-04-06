@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class PostsController extends Controller
 
 
         //Recuperer tous les articles
-        $posts = Post::get();
+        $posts = Post::with('category')->get();
 
         return view('posts.index', compact('posts'));
     }
@@ -31,7 +32,12 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $post = new Post();
+
+        //recuperer les category
+        $categories = Category::pluck('name', 'id');
+
+        return view('posts.create', compact('post', 'categories'));
     }
 
     /**
@@ -70,7 +76,10 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        return view('posts.edit', compact('post'));
+        //recuperer les category
+        $categories = Category::pluck('name', 'id');
+
+        return view('posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -84,6 +93,9 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->update($request->all());
+
+        //reecuperer les tags et les associées aux articles
+        $post->tags()->sync($request->get('tags'));
 
         //return view('posts.edit', compact('post'));
        return redirect(route('news.index', $id));

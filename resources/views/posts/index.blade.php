@@ -14,6 +14,7 @@
         @foreach($posts as $post)
             <div class="col-md-4">
                 <h2>{{ $post->title }}</h2>
+                <p><em>{{ $post->category->name }}</em></p>
                 <p>{{ $post->content }}</p>
 
                 <p><a class="btn btn-primary btn-sm" href="{{ route('news.edit', $post) }}" role="button">Editer »</a></p>

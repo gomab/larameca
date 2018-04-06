@@ -9,25 +9,6 @@
         </div>
     </div>
 
-    <div class="row">
-        {!! Form::open(['url' => route('news.store')]) !!}
-            <div class="form-group">
-                {!! Form::label('title', 'Titre') !!}
-                {!! Form::text('title', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('slug', 'URL') !!}
-                {!! Form::text('slug', null, ['class' => 'form-control']) !!}
-            </div>
-
-            <div class="form-group">
-                {!! Form::label('content', 'Contenu') !!}
-                {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
-            </div>
-             <button class="btn btn-primary">Envoyer</button>
-        {!! Form::close() !!}
-    </div>
-
+    @include('posts.form')
     <hr>
 @endsection

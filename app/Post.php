@@ -7,7 +7,21 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'slug', 'content', 'online'];
+    protected $fillable = ['title', 'slug', 'content', 'online', 'category_id'];
+
+    /*
+     * Un post appartient à une category
+     */
+    public function category(){
+        return $this->belongsTo('App\Category');
+    }
+
+    /**
+     * Un tag appartient à plusieurs posts
+     */
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
 
     /**
      * Scope permettant de récuperer tous les posts online
