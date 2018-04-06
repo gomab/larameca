@@ -25,8 +25,8 @@
     </div>
 
     <div class="form-group">
-        {!! Form::label('tags[]', 'Tags') !!}
-        {!! Form::select('tags[]', App\Tag::pluck('name', 'id') , $post->tags->pluck('id'), ['class' => 'form-control', 'multiple' => true]) !!}
+        {!! Form::label('tags_list[]', 'Tags') !!}
+        {!! Form::select('tags_list[]', App\Tag::pluck('name', 'id') , null, ['class' => 'form-control', 'multiple' => true]) !!}
     </div>
 
     <div class="form-group">

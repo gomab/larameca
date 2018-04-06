@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class Post extends Model
 {
-    protected $fillable = ['title', 'slug', 'content', 'online', 'category_id'];
+    protected $fillable = ['title', 'slug', 'content', 'online', 'category_id', 'tags_list'];
 
     /*
      * Un post appartient à une category
@@ -21,6 +21,20 @@ class Post extends Model
      */
     public function tags(){
         return $this->belongsToMany('App\Tag');
+    }
+
+    /**
+     * Organiser tous les tags par id
+     * @return mixed
+     */
+    public function getTagsListAttribute(){
+        if($this->id){
+            return $this->tags->pluck('id');
+        }
+    }
+
+    public function  setTagsListAttribute($values){
+        return $this->tags()->sync($values) ;
     }
 
     /**
