@@ -17,11 +17,11 @@
 });
  */
 
+Route::resource('news', 'PostsController');
+
 Route::resource('/link', 'LinksController', ['only'=> ['create', 'store']]);
 
 Route::get('/r/{link}', ['as' => 'link.show', 'uses' => 'LinksController@show'])->where('link', '[0-9]+');
 //Route::get('/', 'LinksController@index');
-
 //Route::post('/', 'LinksController@store');
-
 //Route::get('/r/{id}', 'LinksController@show')->where('id', '[0-9]+');
