@@ -25,6 +25,13 @@
                 {!! Form::label('content', 'Contenu') !!}
                 {!! Form::textarea('content', $post->content, ['class' => 'form-control']) !!}
             </div>
+
+            <div class="form-group">
+                <label>
+                    {!! Form::checkbox('online',1, $post->online) !!}
+                    En ligne?
+                </label>
+            </div>
              <button class="btn btn-primary">Envoyer</button>
         {!! Form::close() !!}
     </div>
