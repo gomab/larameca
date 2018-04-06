@@ -14,8 +14,12 @@ class PostsController extends Controller
      */
     public function index()
     {
+        //Recuperer tous les articles online dont le titre contient le mot 'article'
+        //$posts = Post::published()->searchByTitle('article')->get();
+
+
         //Recuperer tous les articles
-        $posts = Post::published()->searchByTitle('article')->get();
+        $posts = Post::get();
 
         return view('posts.index', compact('posts'));
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -18,5 +19,27 @@ class Post extends Model
 
     public function scopeSearchByTitle($query, $q){
         return $query->where('title', 'LIKE', '%' .$q. '%');
-}
+    }
+
+    /**
+     * getter $title : return le 1er mot des titres des articles en majuscule
+     * @param $value
+     * @return string
+     */
+    public function getTitleAttribute($value)
+    {
+        return ucfirst($value);
+        //return strtoupper($value);
+    }
+
+    public function setSlugAttribute($value)
+    {
+        if(empty($value)){
+            $this->attributes['slug'] = Str::slug($this->title);
+        }
+    }
+
+    public function getDates(){
+        return ['created_at', 'updated_at', 'published_at'];
+    }
 }
